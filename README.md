@@ -13,7 +13,7 @@
 
 Run perli REPL.
 
-### `perl-other-window`
+### `perli-other-window`
 
 Run perli REPL in other window.
 
