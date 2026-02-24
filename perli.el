@@ -95,12 +95,15 @@
   (pop-to-buffer-same-window "*perli*"))
 
 (defun switch-to-perli (eob-p)
-  "Start a Perl REPL, or switch to a running one."
+  "Start a perli REPL, or switch to a running one."
   (interactive "P")
-  (let ((win (get-buffer-window perli--buffer)))
-    (if win
-        (select-window win)
-      (switch-to-buffer (get-buffer-create perli--buffer))))
+  (let* ((buf (get-buffer-create perli--buffer))
+         (win (get-buffer-window buf)))
+    (if (eq (selected-window) win)
+        (other-window -1)
+      (if win
+          (select-window win)
+        (switch-to-buffer-other-window buf))))
   (unless (and perli--buffer
                (get-buffer perli--buffer)
                (process-live-p (get-buffer-process perli--buffer)))
