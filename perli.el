@@ -117,6 +117,23 @@
   (perli-send-region start end)
   (switch-to-perli t))
 
+(defun perli-other-window ()
+  "Run perli on other window."
+  (interactive)
+  (switch-to-buffer-other-window
+   (get-buffer-create "*perli*"))
+  (run-perli "perli"))
+
+(defun perli-send-buffer ()
+  "Send the entire buffer to the perli process."
+  (interactive)
+  (perli-send-region (point-min) (point-max)))
+
+(defun perli-send-line ()
+  "Send the current line to the perli process."
+  (interactive)
+  (perli-send-region (line-beginning-position) (line-end-position)))
+
 (provide 'perli)
 
 ;;; perli.el ends here
