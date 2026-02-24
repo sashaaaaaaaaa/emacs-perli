@@ -1,5 +1,5 @@
-# reply.el
-**reply.el** is Emacs front end of [Reply](https://github.com/doy/reply).
+# perli.el
+**perli.el** is Emacs front end of [Perli](https://github.com/mklement0/perli).
 
 
 ## screenshot
@@ -9,28 +9,28 @@
 
 ## Basic Usage
 
-### `run-reply`
+### `run-perli`
 
-Run reply REPL.
+Run perli REPL.
 
-### `reply-send-region`
+### `perli-send-region`
 
-Send region to reply REPL process.
+Send region to perli REPL process.
 
 
 ## Sample Configuration
 
 ```lisp
-(require 'reply)
+(require 'perli)
 
-(defun reply-other-window ()
-  "Run reply on other window"
+(defun perli-other-window ()
+  "Run perli on other window"
   (interactive)
   (switch-to-buffer-other-window
-   (get-buffer-create "*reply*"))
-  (run-reply "reply"))
+   (get-buffer-create "*perli*"))
+  (run-perli "perli"))
 
 (require 'cperl-mode)
-(define-key cperl-mode-map (kbd "C-c C-r") 'reply-send-region)
-(define-key cperl-mode-map (kbd "C-c C-z") 'reply-other-window)
+(define-key cperl-mode-map (kbd "C-c C-r") 'perli-send-region)
+(define-key cperl-mode-map (kbd "C-c C-z") 'perli-other-window)
 ```
