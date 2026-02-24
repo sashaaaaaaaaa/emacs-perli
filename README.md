@@ -25,6 +25,10 @@ Send line to perli REPL process.
 
 Send buffer to perli REPL process.
 
+### `perli-send-defun`
+
+Send defun at point to perli REPL process.
+
 ### `perli-send-expression`
 
 Send expression to perli REPL process.
