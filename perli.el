@@ -144,7 +144,7 @@
   (perli-send-region (line-beginning-position) (line-end-position)))
 
 (defun perli-send-defun ()
-  "Send the defun at point to the perli process"
+  "Send the defun at point to the perli process."
   (interactive)
   (save-excursion
     (let ((end (progn (end-of-defun) (point)))
