@@ -117,7 +117,7 @@
   (perli-send-region start end)
   (switch-to-perli t))
 
-(defun perli-other-window ()
+(defun run-perli-other-window ()
   "Run perli on other window."
   (interactive)
   (switch-to-buffer-other-window
