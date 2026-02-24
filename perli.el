@@ -118,7 +118,7 @@
   (perli-send-region start end)
   (switch-to-perli t))
 
-(defun run-perli-other-window ()
+(defun perli-other-window ()
   "Run perli in other window, reusing existing buffer/window if available."
   (interactive)
   (let* ((buf (get-buffer "*perli*"))

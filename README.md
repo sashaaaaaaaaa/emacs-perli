@@ -36,13 +36,6 @@ Send expression to perli REPL process.
 ```lisp
 (require 'perli)
 
-(defun perli-other-window ()
-  "Run perli on other window"
-  (interactive)
-  (switch-to-buffer-other-window
-   (get-buffer-create "*perli*"))
-  (run-perli "perli"))
-
 (require 'cperl-mode)
 (define-key cperl-mode-map (kbd "C-c C-r") 'perli-send-region)
 (define-key cperl-mode-map (kbd "C-c C-z") 'perli-other-window)
