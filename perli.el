@@ -126,7 +126,7 @@
          (win (and buf (get-buffer-window buf))))
     ;; Navigate to the buffer/window
     (cond
-     (win              (select-window win))  ; dead process, already visible
+     (win              (select-window win))
      (t                (switch-to-buffer-other-window (get-buffer-create "*perli*"))))
     ;; Start perli if not running
     (unless alive
