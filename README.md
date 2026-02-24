@@ -17,6 +17,14 @@ Run perli REPL.
 
 Send region to perli REPL process.
 
+### `perli-send-line`
+
+Send line to perli REPL process.
+
+### `perli-send-buffer`
+
+Send buffer to perli REPL process.
+
 
 ## Sample Configuration
 
