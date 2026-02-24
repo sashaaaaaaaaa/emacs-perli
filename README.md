@@ -13,6 +13,15 @@
 
 Run perli REPL.
 
+### `perl-other-window`
+
+Run perli REPL in other window.
+
+### `switch-to-perli`
+
+Switch to the perli buffer. Reuses an existing perli window 
+if visible, otherwise switches in current window.
+
 ### `perli-send-region`
 
 Send region to perli REPL process.
@@ -42,5 +51,5 @@ Send expression to perli REPL process.
 
 (require 'cperl-mode)
 (define-key cperl-mode-map (kbd "C-c C-r") 'perli-send-region)
-(define-key cperl-mode-map (kbd "C-c C-z") 'perli-other-window)
+(define-key cperl-mode-map (kbd "C-c C-z") 'switch-to-perli)
 ```

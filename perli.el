@@ -96,10 +96,14 @@
 
 (defun switch-to-perli (eob-p)
   (interactive "P")
-  (if (or (and perli--buffer (get-buffer perli--buffer))
-          (perli-interactively-start-process))
-      (pop-to-buffer-same-window perli--buffer)
-    (error "No current process buffer. See variable `perli--buffer'"))
+  (let ((win (get-buffer-window perli--buffer)))
+    (if win
+        (select-window win)
+      (switch-to-buffer (get-buffer-create perli--buffer))))
+  (unless (and perli--buffer
+               (get-buffer perli--buffer)
+               (process-live-p (get-buffer-process perli--buffer)))
+    (perli-interactively-start-process))
   (when eob-p
     (push-mark)
     (goto-char (point-max))))
