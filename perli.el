@@ -95,6 +95,7 @@
   (pop-to-buffer-same-window "*perli*"))
 
 (defun switch-to-perli (eob-p)
+  "Start a Perl REPL, or switch to a running one."
   (interactive "P")
   (let ((win (get-buffer-window perli--buffer)))
     (if win
