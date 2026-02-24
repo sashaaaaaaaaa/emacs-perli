@@ -118,11 +118,22 @@
   (switch-to-perli t))
 
 (defun run-perli-other-window ()
-  "Run perli on other window."
+  "Run perli in other window, reusing existing buffer/window if available."
   (interactive)
-  (switch-to-buffer-other-window
-   (get-buffer-create "*perli*"))
-  (run-perli "perli"))
+  (let* ((buf (get-buffer "*perli*"))
+         (proc (and buf (get-buffer-process buf)))
+         (alive (and proc (process-live-p proc))))
+    (cond
+     ;; Buffer visible and process alive — just focus the window
+     ((and alive (get-buffer-window buf))
+      (select-window (get-buffer-window buf)))
+     ;; Buffer exists and process alive, but not visible — show in other window
+     (alive
+      (switch-to-buffer-other-window buf))
+     ;; No live process — (re)create buffer and start perli
+     (t
+      (switch-to-buffer-other-window (get-buffer-create "*perli*"))
+      (run-perli "perli")))))
 
 (defun perli-send-buffer ()
   "Send the entire buffer to the perli process."
