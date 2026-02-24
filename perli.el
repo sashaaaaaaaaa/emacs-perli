@@ -143,6 +143,14 @@
   (interactive)
   (perli-send-region (line-beginning-position) (line-end-position)))
 
+(defun perli-send-defun ()
+  "Send the defun at point to perli"
+  (interactive)
+  (save-excursion
+    (let ((end (progn (end-of-defun) (point)))
+          (start (progn (beginning-of-defun) (point))))
+      (perli-send-region start end))))
+
 ;; Expression navigation adapted from perl-repl.el
 ;; by Francisco Jurado (https://github.com/quicoju/perl-repl-el)
 
