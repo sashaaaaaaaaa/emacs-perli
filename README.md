@@ -25,6 +25,11 @@ Send line to perli REPL process.
 
 Send buffer to perli REPL process.
 
+### `perli-send-expression`
+
+Send expression to perli REPL process.
+
+
 
 ## Sample Configuration
 

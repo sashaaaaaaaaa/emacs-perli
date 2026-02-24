@@ -24,6 +24,7 @@
 ;;; Code:
 
 (require 'comint)
+(require 'cperl-mode)
 
 (defgroup perli nil
   "Run a perli process in a buffer"
@@ -141,6 +142,45 @@
   "Send the current line to the perli process."
   (interactive)
   (perli-send-region (line-beginning-position) (line-end-position)))
+
+;; Expression navigation adapted from perl-repl.el
+;; by Francisco Jurado (https://github.com/quicoju/perl-repl-el)
+
+(defun perli--point-at-expr-boundary-p ()
+  (memq 59 (cperl-after-expr-p)))
+
+(defun perli--end-of-expression-p ()
+  (and (perli--point-at-expr-boundary-p)
+       (eq (char-before) ?\;)))
+
+(defun perli--backward-to-start-of-expr ()
+  (condition-case nil
+      (progn
+        (while (or (not (perli--point-at-expr-boundary-p))
+                   (nth 3 (syntax-ppss)))
+          (backward-char)
+          (skip-chars-backward "$@%#")))
+    (error nil)))
+
+(defun perli--forward-to-end-of-expr ()
+  (condition-case nil
+      (progn
+        (while (or (not (perli--end-of-expression-p))
+                   (nth 3 (syntax-ppss)))
+          (forward-char)
+          (skip-chars-forward "$@%#")))
+    (error nil)))
+
+(defun perli-send-expression ()
+  "Send the current expression to the perli process."
+  (interactive)
+  (save-excursion
+    (perli--forward-to-end-of-expr)
+    (if (> (current-column) 1)
+        (backward-char))
+    (let ((end (point)))
+      (perli--backward-to-start-of-expr)
+      (perli-send-region (point) end))))
 
 (provide 'perli)
 
