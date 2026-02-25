@@ -52,4 +52,5 @@ Send expression to perli REPL process.
 (require 'cperl-mode)
 (define-key cperl-mode-map (kbd "C-c C-r") 'perli-send-region)
 (define-key cperl-mode-map (kbd "C-c C-z") 'switch-to-perli)
+(define-key inferior-perli-mode-map (kbd "C-c C-z") 'switch-to-perl-repl)
 ```
