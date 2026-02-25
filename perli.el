@@ -126,21 +126,6 @@
   (perli-send-region start end)
   (switch-to-perli t))
 
-(defun perli-other-window ()
-  "Run perli in other window, reusing existing buffer/window if available."
-  (interactive)
-  (let* ((buf (get-buffer "*perli*"))
-         (proc (and buf (get-buffer-process buf)))
-         (alive (and proc (process-live-p proc)))
-         (win (and buf (get-buffer-window buf))))
-    ;; Navigate to the buffer/window
-    (cond
-     (win              (select-window win))
-     (t                (switch-to-buffer-other-window (get-buffer-create "*perli*"))))
-    ;; Start perli if not running
-    (unless alive
-      (run-perli "perli"))))
-
 (defun perli-send-buffer ()
   "Send the entire buffer to the perli process."
   (interactive)

@@ -13,10 +13,6 @@
 
 Run perli REPL.
 
-### `perli-other-window`
-
-Run perli REPL in other window.
-
 ### `switch-to-perli`
 
 Switch to the perli REPL buffer. Reuses an existing perli window 
